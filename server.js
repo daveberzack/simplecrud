@@ -42,6 +42,10 @@ app.post("/hocussolve", async (request, response) => {
   }
 });
 
+app.get("/", async (request, response) => {
+  response.send("Hello.");
+});
+
 app.listen(PORT, () => {
   console.log("Server is listening on port " + PORT);
 });
