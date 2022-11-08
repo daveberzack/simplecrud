@@ -35,15 +35,12 @@ const HocusFeedbackSchema = new mongoose.Schema(
     },
     isFair: {
       type: Boolean,
-      required: true,
     },
     isFun: {
       type: Boolean,
-      required: true,
     },
     shouldPublish: {
       type: Boolean,
-      required: true,
     },
   },
   { timestamps: true }
