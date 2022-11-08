@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 const { HocusFeedback, HocusSolve } = require("./models");
 
 const app = express();
-const PORT = 3020;
+const PORT = process.env.PORT || 3020;
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
