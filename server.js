@@ -1,10 +1,12 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
+import cors from "cors";
 const { HocusFeedback, HocusSolve } = require("./models");
 
-const app = express();
 const PORT = process.env.PORT || 3020;
+const app = express();
+app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
