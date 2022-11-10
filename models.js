@@ -2,6 +2,9 @@ const mongoose = require("mongoose");
 
 const HocusSolveSchema = new mongoose.Schema(
   {
+    name: {
+      type: String,
+    },
     challengeId: {
       type: String,
       required: true,
@@ -33,14 +36,14 @@ const HocusFeedbackSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    isFair: {
-      type: Boolean,
+    fun: {
+      type: Number,
     },
-    isFun: {
-      type: Boolean,
+    difficulty: {
+      type: Number,
     },
-    shouldPublish: {
-      type: Boolean,
+    feedback: {
+      type: Number,
     },
   },
   { timestamps: true }
