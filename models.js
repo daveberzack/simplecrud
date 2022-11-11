@@ -1,8 +1,22 @@
 const mongoose = require("mongoose");
 
+const PageViewSchema = new mongoose.Schema(
+  {
+    page: {
+      type: String,
+      required: true,
+    },
+    userAgent: {
+      type: String,
+    },
+  },
+  { timestamps: true }
+);
+const PageView = mongoose.model("PageView", PageViewSchema);
+
 const HocusSolveSchema = new mongoose.Schema(
   {
-    name: {
+    tester: {
       type: String,
     },
     challengeId: {
@@ -28,7 +42,7 @@ const HocusSolve = mongoose.model("HocusSolve", HocusSolveSchema);
 
 const HocusFeedbackSchema = new mongoose.Schema(
   {
-    name: {
+    tester: {
       type: String,
       required: true,
     },
@@ -43,11 +57,48 @@ const HocusFeedbackSchema = new mongoose.Schema(
       type: Number,
     },
     feedback: {
-      type: Number,
+      type: String,
     },
   },
   { timestamps: true }
 );
 const HocusFeedback = mongoose.model("HocusFeedback", HocusFeedbackSchema);
 
-module.exports = { HocusSolve, HocusFeedback };
+const FiveMinuteClickSchema = new mongoose.Schema(
+  {
+    id: {
+      type: String,
+      required: true,
+    },
+    url: {
+      type: String,
+    },
+  },
+  { timestamps: true }
+);
+const FiveMinuteClick = mongoose.model("FiveMinuteClick", FiveMinuteClickSchema);
+
+const FiveMinuteAddSchema = new mongoose.Schema(
+  {
+    name: {
+      type: String,
+      required: true,
+    },
+    url: {
+      type: String,
+    },
+    description: {
+      type: String,
+    },
+  },
+  { timestamps: true }
+);
+const FiveMinuteAdd = mongoose.model("FiveMinuteClick", FiveMinuteAddSchema);
+
+module.exports = {
+  HocusSolve,
+  HocusFeedback,
+  FiveMinuteClick,
+  FiveMinuteAdd,
+  PageView,
+};
