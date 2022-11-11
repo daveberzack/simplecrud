@@ -93,7 +93,7 @@ const FiveMinuteAddSchema = new mongoose.Schema(
   },
   { timestamps: true }
 );
-const FiveMinuteAdd = mongoose.model("FiveMinuteClick", FiveMinuteAddSchema);
+const FiveMinuteAdd = mongoose.model("FiveMinuteAdd", FiveMinuteAddSchema);
 
 module.exports = {
   HocusSolve,
