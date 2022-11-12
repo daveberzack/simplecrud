@@ -9,6 +9,18 @@ const PageViewSchema = new mongoose.Schema(
     userAgent: {
       type: String,
     },
+    width: {
+      type: Number,
+    },
+    height: {
+      type: Number,
+    },
+    touch: {
+      type: Boolean,
+    },
+    user: {
+      type: String,
+    },
   },
   { timestamps: true }
 );
