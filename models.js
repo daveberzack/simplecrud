@@ -26,6 +26,61 @@ const PageViewSchema = new mongoose.Schema(
 );
 const PageView = mongoose.model("PageView", PageViewSchema);
 
+const HocusChallengeSchema = new mongoose.Schema(
+  {
+    date: {
+      type: String,
+    },
+    clue: {
+      type: String,
+      required: true,
+    },
+    credit: {
+      type: String,
+    },
+    creditUrl: {
+      type: String,
+    },
+    imageUrl: {
+      type: String,
+      required: true,
+    },
+    hitAreas: [
+      {
+        x1: {
+          type: Number,
+        },
+        y1: {
+          type: Number,
+        },
+        x2: {
+          type: Number,
+        },
+        y2: {
+          type: Number,
+        },
+        w: {
+          type: Number,
+        },
+      },
+    ],
+    goals: {
+      type: [Number],
+    },
+    beforeTitle: {
+      type: String,
+    },
+    beforeMessage: {
+      type: String,
+    },
+    isTest: {
+      type: Boolean,
+    },
+  },
+  { timestamps: true }
+);
+const HocusChallenge = mongoose.model("HocusChallenge", HocusChallengeSchema);
+
 const HocusSolveSchema = new mongoose.Schema(
   {
     tester: {
@@ -108,6 +163,7 @@ const FiveMinuteAddSchema = new mongoose.Schema(
 const FiveMinuteAdd = mongoose.model("FiveMinuteAdd", FiveMinuteAddSchema);
 
 module.exports = {
+  HocusChallenge,
   HocusSolve,
   HocusFeedback,
   FiveMinuteClick,
