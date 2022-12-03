@@ -22,7 +22,7 @@ const s3 = new AWS.S3({
   secretAccessKey: "zc1qOMSp4jD6/O9XgvxHp/0ljLf6L0gyigqKPF7W",
   region:"us-east-1"
 })
-const s3Bucket = new AWS.S3( { params: {Bucket: 'hocus-focus'} } );
+//const s3Bucket = new AWS.S3( { params: {Bucket: 'hocus-focus'} } );
 
 
 const generateRandomString = (myLength) => {
@@ -47,8 +47,8 @@ const putImage = async (image) => {
   const fileKey = generateRandomString(10);
 
   const params = {
-    Bucket: s3Bucket,
-    Key: fileKey,
+    Bucket: 'hocus-focus',
+    Key: `uploads/${fileKey}.${type}`,
     Body: base64Data,
     ACL: 'public-read',
     ContentEncoding: 'base64',
