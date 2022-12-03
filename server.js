@@ -117,6 +117,21 @@ app.post("/hocuschallenge", async (request, response) => {
   }
 });
 
+
+app.post("/hocuschristmas", async (request, response) => {
+  const bodyData = request.body;
+  console.log("XMas Data:",bodyData);
+  response.send("1234");
+
+  // const data = new HocusChallenge(request.body);
+  // try {
+  //   await data.save();
+  //   response.send(data);
+  // } catch (error) {
+  //   response.status(500).send(error);
+  // }
+});
+
 app.get("/hocustestchallenges/", async (request, response) => {
   try {
     const filter = { isTest: true };

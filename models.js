@@ -67,12 +67,19 @@ const HocusChallengeSchema = new mongoose.Schema(
     goals: {
       type: [Number],
     },
-    beforeTitle: {
-      type: String,
-    },
-    beforeMessage: {
-      type: String,
-    },
+    beforeMessages: [
+      {
+        body: {
+          type: String,
+        },
+        title: {
+          type: String,
+        },
+        button: {
+          type: String,
+        },
+      },
+    ],
     isTest: {
       type: Boolean,
     },
