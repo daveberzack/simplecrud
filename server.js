@@ -1,3 +1,4 @@
+const AWS = require("aws-sdk");
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
@@ -5,11 +6,71 @@ const cors = require("cors");
 const { HocusChallenge, HocusFeedback, HocusSolve, PageView, FiveMinuteAdd, FiveMinuteClick } = require("./models");
 const { formatTablePage, getTodayString } = require("./utils");
 
+
 const PORT = process.env.PORT || 3020;
 const app = express();
 app.use(cors());
 app.use(bodyParser.json({limit: '5mb'}));
 app.use(bodyParser.urlencoded({limit: '5mb', extended: true }));
+
+// const s3 = new AWS.S3({
+//   accessKeyId: process.env.AWS_S3_ACCESS_KEY_ID,
+//   secretAccessKey: process.env.AWS_S3_SECRET_ACCESS_KEY,
+// })
+const s3 = new AWS.S3({
+  accessKeyId: "AKIAXBHKRV7MWNVMV2U3",
+  secretAccessKey: "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",
+  region:"us-east-1"
+})
+const s3Bucket = new AWS.S3( { params: {Bucket: 'hocus-focus'} } );
+
+const putImage = async (image) => {
+
+  
+  const base64Data = new Buffer.from(base64.replace(/^data:image\/\w+;base64,/, ""), 'base64');
+
+  const type = base64.split(';')[0].split('/')[1];
+
+  //const userId = 1;
+
+  const params = {
+    Bucket: s3Bucket,
+    Key: `${userId}.${type}`,
+    Body: base64Data,
+    ACL: 'public-read',
+    ContentEncoding: 'base64',
+    ContentType: `image/${type}`
+  }
+
+  let location = '';
+  let key = '';
+  try {
+    const { Location, Key } = await s3.upload(params).promise();
+    location = Location;
+    key = Key;
+  } catch (error) {
+  }
+
+  console.log(location, key);
+
+  return location;
+
+  // var buf = Buffer.from(image.replace(/^data:image\/\w+;base64,/, ""),'base64')
+  // var data = {
+  //   Key: req.body.userId, 
+  //   Body: buf,
+  //   ContentEncoding: 'base64',
+  //   ContentType: 'image/jpeg'
+  // };
+  // s3Bucket.putObject(data, function(err, data){
+  //     if (err) { 
+  //       console.log(err);
+  //       console.log('Error uploading data: ', data); 
+  //     } else {
+  //       console.log('successfully uploaded the image!');
+  //     }
+  // });
+}
 
 mongoose.connect("mongodb+srv://daveberzack:zNDEUMMtWlnmRZYi@cluster0.rddcyey.mongodb.net/?retryWrites=true&w=majority", {
   useNewUrlParser: true,
@@ -121,15 +182,29 @@ app.post("/hocuschallenge", async (request, response) => {
 app.post("/hocuschristmas", async (request, response) => {
   const bodyData = request.body;
   console.log("XMas Data:",bodyData);
-  response.send("1234");
+  const imageUrl = await putImage(bodyData.image);
 
-  // const data = new HocusChallenge(request.body);
-  // try {
-  //   await data.save();
-  //   response.send(data);
-  // } catch (error) {
-  //   response.status(500).send(error);
-  // }
+  const challengeData = {
+    clue: bodyData.clue,
+    imageUrl,
+    hitAreas: bodyData.strokes,
+    goals: [20,40,60,90,120],
+    beforeMessages: [
+      {
+        body: bodyData.beforeMessage,
+        title: bodyData.beforeTitle,
+        button: "Play"
+      }
+    ]
+  }
+  
+  const data = new HocusChallenge(challengeData);
+  try {
+    await data.save();
+    response.send(data);
+  } catch (error) {
+    response.status(500).send(error);
+  }
 });
 
 app.get("/hocustestchallenges/", async (request, response) => {
