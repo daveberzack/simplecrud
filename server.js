@@ -27,7 +27,7 @@ const s3Bucket = new AWS.S3( { params: {Bucket: 'hocus-focus'} } );
 const putImage = async (image) => {
 
   
-  const base64Data = new Buffer.from(base64.replace(/^data:image\/\w+;base64,/, ""), 'base64');
+  const base64Data = new Buffer.from(image.replace(/^data:image\/\w+;base64,/, ""), 'base64');
 
   const type = base64.split(';')[0].split('/')[1];
 
@@ -49,6 +49,7 @@ const putImage = async (image) => {
     location = Location;
     key = Key;
   } catch (error) {
+    console.log("put image error",error);
   }
 
   console.log(location, key);
@@ -197,7 +198,7 @@ app.post("/hocuschristmas", async (request, response) => {
       }
     ]
   }
-  
+
   const data = new HocusChallenge(challengeData);
   try {
     await data.save();
