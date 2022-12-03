@@ -24,6 +24,19 @@ const s3 = new AWS.S3({
 })
 const s3Bucket = new AWS.S3( { params: {Bucket: 'hocus-focus'} } );
 
+
+const generateRandomString = (myLength) => {
+  const chars =
+    "AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz1234567890";
+  const randomArray = Array.from(
+    { length: myLength },
+    (v, k) => chars[Math.floor(Math.random() * chars.length)]
+  );
+
+  const randomString = randomArray.join("");
+  return randomString;
+};
+
 const putImage = async (image) => {
 
   
@@ -31,11 +44,11 @@ const putImage = async (image) => {
 
   const type = image.split(';')[0].split('/')[1];
 
-  //const userId = 1;
+  const fileKey = generateRandomString(10);
 
   const params = {
     Bucket: s3Bucket,
-    Key: `${userId}.${type}`,
+    Key: fileKey,
     Body: base64Data,
     ACL: 'public-read',
     ContentEncoding: 'base64',
