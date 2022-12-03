@@ -29,7 +29,7 @@ const putImage = async (image) => {
   
   const base64Data = new Buffer.from(image.replace(/^data:image\/\w+;base64,/, ""), 'base64');
 
-  const type = base64.split(';')[0].split('/')[1];
+  const type = image.split(';')[0].split('/')[1];
 
   //const userId = 1;
 
