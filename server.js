@@ -8,8 +8,8 @@ const { formatTablePage, getTodayString } = require("./utils");
 const PORT = process.env.PORT || 3020;
 const app = express();
 app.use(cors());
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
+app.use(bodyParser.json({limit: '5mb'}));
+app.use(bodyParser.urlencoded({limit: '5mb', extended: true }));
 
 mongoose.connect("mongodb+srv://daveberzack:zNDEUMMtWlnmRZYi@cluster0.rddcyey.mongodb.net/?retryWrites=true&w=majority", {
   useNewUrlParser: true,
