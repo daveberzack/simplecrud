@@ -184,7 +184,7 @@ app.post("/hocuschristmas", async (request, response) => {
       }
     ]
   }
-
+  console.log("xmas challenge",challengeData);
   const data = new HocusChallenge(challengeData);
   try {
     await data.save();
