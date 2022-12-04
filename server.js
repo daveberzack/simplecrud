@@ -164,6 +164,8 @@ app.post("/hocuschristmas", async (request, response) => {
   const bodyData = request.body;
   const imageUrl = await putImage(bodyData.image);
 
+  const instructionsBody = "<p>This holiday card is a puzzle to find something in a hidden picture.</p><p>Move the cursor around the canvas to paint blocks of color. Paint over those areas to reveal finer details.</p><p>Keep going until you understand the picture enough to find the goal, then click it to solve the puzzle.</p>";
+  const instructionsTitle = "How to play";
   const challengeData = {
     clue: bodyData.clue,
     imageUrl,
@@ -173,6 +175,11 @@ app.post("/hocuschristmas", async (request, response) => {
       {
         body: bodyData.beforeMessage,
         title: bodyData.beforeTitle,
+        button: "Next"
+      },
+      {
+        body: instructionsBody,
+        title: instructionsTitle,
         button: "Play"
       }
     ]
