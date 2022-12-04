@@ -18,11 +18,6 @@ const s3 = new AWS.S3({
   accessKeyId: process.env.AWS_ACCESS_KEY_ID,
   secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
 })
-// const s3 = new AWS.S3({
-//   accessKeyId: "AKIAXBHKRV7MWNVMV2U3",
-//   secretAccessKey: "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",
-//   region:"us-east-1"
-// })
 
 const generateRandomString = (myLength) => {
   const chars ="AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz1234567890";
@@ -244,7 +239,7 @@ app.post("/fiveminuteadd", async (request, response) => {
 });
 
 app.get("/", async (request, response) => {
-  response.send("Hello."+process.env.AWS_ACCESS_KEY_ID);
+  response.send("Simple Crud is operational.");
 });
 
 app.listen(PORT, () => {
