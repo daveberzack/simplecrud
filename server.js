@@ -45,8 +45,8 @@ const putImage = async (image) => {
 
   let location = '';
   try {
-    const { loc } = await s3.upload(params).promise();
-    location = loc;
+    const { Location } = await s3.upload(params).promise();
+    location = Location;
   } catch (error) {
     console.log("put image error",error);
   }
