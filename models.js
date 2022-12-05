@@ -41,10 +41,6 @@ const HocusChallengeSchema = new mongoose.Schema(
     creditUrl: {
       type: String,
     },
-    imageUrl: {
-      type: String,
-      required: true,
-    },
     imagekey: {
       type: String,
       required: true,

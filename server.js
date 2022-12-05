@@ -166,7 +166,6 @@ app.post("/hocuschristmas", async (request, response) => {
   const instructionsTitle = "How to play";
   const challengeData = {
     clue: bodyData.clue,
-    imageUrl:location,
     imageKey: fileKey,
     hitAreas: bodyData.hitAreas,
     goals: [20,40,60,90,120],
