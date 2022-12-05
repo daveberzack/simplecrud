@@ -43,17 +43,12 @@ const putImage = async (image) => {
     ContentType: `image/${type}`
   }
 
-  let location = '';
-  let key = '';
   try {
-    const { Location, Key } = await s3.upload(params).promise();
-    location = Location;
-    key = Key;
+    await s3.upload(params).promise();
   } catch (error) {
     console.log("put image error",error);
   }
-  console.log("key:"+key+" ... "+fileKey);
-  return {location, key};
+  return fileKey;
 }
 
 mongoose.connect("mongodb+srv://daveberzack:zNDEUMMtWlnmRZYi@cluster0.rddcyey.mongodb.net/?retryWrites=true&w=majority", {
@@ -165,14 +160,14 @@ app.post("/hocuschallenge", async (request, response) => {
 
 app.post("/hocuschristmas", async (request, response) => {
   const bodyData = request.body;
-  const {location, key} = await putImage(bodyData.image);
+  const fileKey = await putImage(bodyData.image);
 
   const instructionsBody = "<p>This holiday card is a puzzle to find something in a hidden picture.</p><p>Move the cursor around the canvas to paint blocks of color. Paint over those areas to reveal finer details.</p><p>Keep going until you understand the picture enough to find the goal, then click it to solve the puzzle.</p>";
   const instructionsTitle = "How to play";
   const challengeData = {
     clue: bodyData.clue,
     imageUrl:location,
-    imageKey: key,
+    imageKey: fileKey,
     hitAreas: bodyData.hitAreas,
     goals: [20,40,60,90,120],
     beforeMessages: [
