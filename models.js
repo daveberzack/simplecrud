@@ -45,6 +45,10 @@ const HocusChallengeSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    imagekey: {
+      type: String,
+      required: true,
+    },
     hitAreas: [
       {
         x1: {

@@ -52,6 +52,7 @@ const putImage = async (image) => {
   } catch (error) {
     console.log("put image error",error);
   }
+  console.log("key:"+key+" ... "+fileKey);
   return {location, key};
 }
 
