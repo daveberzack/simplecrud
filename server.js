@@ -157,11 +157,12 @@ app.post("/hocuschallenge", async (request, response) => {
   }
 });
 
-
 app.post("/hocuschristmas", async (request, response) => {
   const bodyData = request.body;
   const fileKey = await putImage(bodyData.image);
 
+  console.log("xmas",bodyData.beforeMessages);
+  const backgroundImageUrl = "./img/themes/bgs/"+bodyData.theme+".jpg";
   const instructionsBody = "<p>This holiday card is a puzzle to find something in a hidden picture.</p><p>Move the cursor around the canvas to paint blocks of color. Paint over those areas to reveal finer details.</p><p>Keep going until you understand the picture enough to find the goal, then click it to solve the puzzle.</p>";
   const instructionsTitle = "How to play";
   const challengeData = {
@@ -173,12 +174,14 @@ app.post("/hocuschristmas", async (request, response) => {
       {
         body: bodyData.beforeMessage,
         title: bodyData.beforeTitle,
-        button: "Next"
+        button: "Play",
+        backgroundImageUrl
       },
       {
         body: instructionsBody,
         title: instructionsTitle,
-        button: "Play"
+        button: "Next",
+        backgroundImageUrl
       }
     ]
   }
