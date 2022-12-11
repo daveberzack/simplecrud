@@ -78,6 +78,9 @@ const HocusChallengeSchema = new mongoose.Schema(
         button: {
           type: String,
         },
+        backgroundImageUrl: {
+          type: String,
+        },
       },
     ],
     isTest: {
