@@ -205,6 +205,16 @@ app.get("/hocustestchallenges/", async (request, response) => {
   }
 });
 
+
+app.get("/hocusdeleteimpermanentchallenges/", async (request, response) => {
+  try {
+    Topic.deleteMany({ permanent: false }, function (err) {});
+    response.send("it is done");
+  } catch (error) {
+    response.status(500).send(error);
+  }
+});
+
 app.get("/hocustodaychallenge/", async (request, response) => {
   try {
     const filter = { date: getTodayString() };
