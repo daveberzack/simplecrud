@@ -180,8 +180,7 @@ app.post("/hocuschristmas", async (request, response) => {
       {
         body: instructionsBody,
         title: instructionsTitle,
-        button: "Next",
-        backgroundImageUrl
+        button: "Next"
       }
     ]
   }
@@ -212,7 +211,7 @@ app.get("/hocusdeleteimpermanentchallenges/", async (request, response) => {
     //const result = await HocusChallenge.deleteMany(filter, function (err) {});
     const result = await HocusChallenge.find(filter);
     console.log("deleted", result)
-    response.send("it is done");
+    response.send("it is done", result);
   } catch (error) {
     response.status(500).send(error);
   }

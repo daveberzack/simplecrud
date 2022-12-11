@@ -86,6 +86,9 @@ const HocusChallengeSchema = new mongoose.Schema(
     isTest: {
       type: Boolean,
     },
+    isPermanent: {
+      type: Boolean,
+    },
   },
   { timestamps: true }
 );
