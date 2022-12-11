@@ -208,7 +208,9 @@ app.get("/hocustestchallenges/", async (request, response) => {
 
 app.get("/hocusdeleteimpermanentchallenges/", async (request, response) => {
   try {
-    const result = HocusChallenge.deleteMany({ permanent: false }, function (err) {});
+    const filter = { permanent: false };
+    //const result = await HocusChallenge.deleteMany(filter, function (err) {});
+    const result = await HocusChallenge.find(filter);
     console.log("deleted", result)
     response.send("it is done");
   } catch (error) {
