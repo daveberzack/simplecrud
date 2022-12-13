@@ -163,7 +163,7 @@ app.post("/hocuschristmas", async (request, response) => {
 
   console.log("xmas",bodyData.beforeMessages);
   const backgroundImageUrl = "./img/themes/bgs/"+bodyData.theme+".jpg";
-  const instructionsBody = "<p>This holiday card is a puzzle to find something in a hidden picture.</p><p>Move the cursor around the canvas to paint blocks of color. Paint over those areas to reveal finer details.</p><p>Keep going until you understand the picture enough to find the goal, then click it to solve the puzzle.</p>";
+  const instructionsBody = "<p>This holiday card is a puzzle to find something in a hidden picture.</p><p>Swipe around the canvas to paint blocks of color. Paint over those areas to reveal finer details.</p><p>Keep going until you understand the picture enough to find the goal, then click it to solve the puzzle.</p>";
   const instructionsTitle = "How to Play";
   const challengeData = {
     clue: bodyData.clue,
