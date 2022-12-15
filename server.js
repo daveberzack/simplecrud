@@ -258,6 +258,17 @@ app.post("/fiveminuteadd", async (request, response) => {
   }
 });
 
+
+app.post("/update", async (request, response) => {
+  try {
+    
+    await Test.updateMany({ clue: /^trumpy/ }, { $set: { goals: [15,30,45,60,90] } });
+    response.send("updated");
+  } catch (error) {
+    response.status(500).send(error);
+  }
+});
+
 app.get("/", async (request, response) => {
   response.send("Simple Crud is operational.");
 });
