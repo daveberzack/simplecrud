@@ -150,8 +150,7 @@ const HocusFeedback = mongoose.model("HocusFeedback", HocusFeedbackSchema);
 const FiveMinuteClickSchema = new mongoose.Schema(
   {
     id: {
-      type: String,
-      required: true,
+      type: String
     },
     url: {
       type: String,
@@ -164,8 +163,7 @@ const FiveMinuteClick = mongoose.model("FiveMinuteClick", FiveMinuteClickSchema)
 const FiveMinuteAddSchema = new mongoose.Schema(
   {
     name: {
-      type: String,
-      required: true,
+      type: String
     },
     url: {
       type: String,
