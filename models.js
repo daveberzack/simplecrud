@@ -155,6 +155,9 @@ const FiveMinuteClickSchema = new mongoose.Schema(
     url: {
       type: String,
     },
+    name: {
+      type: String,
+    },
   },
   { timestamps: true }
 );
