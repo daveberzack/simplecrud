@@ -6,6 +6,9 @@ const PageViewSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    url: {
+      type: String,
+    },
     userAgent: {
       type: String,
     },

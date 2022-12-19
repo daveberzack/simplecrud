@@ -261,8 +261,8 @@ app.post("/fiveminuteadd", async (request, response) => {
 
 app.get("/update", async (request, response) => {
   try {
-    
-    await Test.updateMany({ clue: /^trumpy/ }, { $set: { goals: [15,30,45,60,90] } });
+    const data = await HocusChallenge.updateMany({ $set: { goals: [15,30,45,60,90] } });
+    console.log("updated",data);
     response.send("updated");
   } catch (error) {
     response.status(500).send(error);
