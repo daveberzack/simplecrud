@@ -219,7 +219,7 @@ app.get("/hocusdeleteimpermanentchallenges/", async (request, response) => {
 
 app.get("/hocustodaychallenge/", async (request, response) => {
   try {
-    const filter = { date: getTodayString() };
+    const filter = { date: getDayString(0) };
     console.log(filter);
     const data = await HocusChallenge.findOne(filter);
     response.send(data);
