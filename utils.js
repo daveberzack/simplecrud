@@ -55,7 +55,7 @@ const _padTo2Digits = function (num) {
 
 const getDayString = function (offset) {
   const date = new Date();
-  date.setDate(date.getDate() - offset)
+  date.setDate(date.getDate() + offset)
   const output = [date.getFullYear(), _padTo2Digits(date.getMonth() + 1), _padTo2Digits(date.getDate())].join("");
   return output;
 };

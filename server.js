@@ -220,7 +220,6 @@ app.get("/hocusdeleteimpermanentchallenges/", async (request, response) => {
 app.get("/hocustodaychallenge/", async (request, response) => {
   try {
     const filter = { date: getDayString(0) };
-    console.log(filter);
     const data = await HocusChallenge.findOne(filter);
     response.send(data);
   } catch (error) {
@@ -230,9 +229,19 @@ app.get("/hocustodaychallenge/", async (request, response) => {
 
 app.get("/hocusyesterdayscores/", async (request, response) => {
   try {
-    const filter = { date: getTodayString() };
-    console.log(filter);
-    const data = await HocusChallenge.findOne(filter);
+    const date = getDayString(-1);
+    const challengeFilter = { date };
+    const challenge = await HocusChallenge.findOne(challengeFilter);
+
+    const solveFilter = {challengeId: challenge._id};
+    const solves = await HocusChallenge.find(solveFilter);
+    data = {
+      scores: [0,1,2,3,4,5],
+      clue: challenge.clue,
+      date,
+      id: challenge.id
+    }
+
     response.send(data);
   } catch (error) {
     response.status(500).send(error);
