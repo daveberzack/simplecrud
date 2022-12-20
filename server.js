@@ -5,7 +5,7 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const { HocusChallenge, HocusFeedback, HocusSolve, PageView, FiveMinuteAdd, FiveMinuteClick } = require("./models");
-const { formatTablePage, getTodayString } = require("./utils");
+const { formatTablePage, getDayString } = require("./utils");
 
 
 const PORT = process.env.PORT || 3020;
@@ -218,6 +218,17 @@ app.get("/hocusdeleteimpermanentchallenges/", async (request, response) => {
 });
 
 app.get("/hocustodaychallenge/", async (request, response) => {
+  try {
+    const filter = { date: getTodayString() };
+    console.log(filter);
+    const data = await HocusChallenge.findOne(filter);
+    response.send(data);
+  } catch (error) {
+    response.status(500).send(error);
+  }
+});
+
+app.get("/hocusyesterdayscores/", async (request, response) => {
   try {
     const filter = { date: getTodayString() };
     console.log(filter);

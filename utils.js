@@ -53,9 +53,14 @@ const _padTo2Digits = function (num) {
 };
 
 const getTodayString = function () {
+  return getDayString(0);
+};
+
+const getDayString = function (offset) {
   const date = new Date();
+  date.setDate(date.getDate() - 1)
   const output = [date.getFullYear(), _padTo2Digits(date.getMonth() + 1), _padTo2Digits(date.getDate())].join("");
   return output;
 };
 
-module.exports = { formatTablePage, getTodayString };
+module.exports = { formatTablePage, getDayString };
