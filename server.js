@@ -239,7 +239,8 @@ app.get("/hocusyesterdayscores/", async (request, response) => {
       scores: [0,1,2,3,4,5],
       clue: challenge.clue,
       date,
-      id: challenge.id
+      id: challenge.id,
+      currentTime: new Date()
     }
 
     response.send(data);
