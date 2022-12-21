@@ -234,11 +234,9 @@ app.get("/hocusyesterdayscores/", async (request, response) => {
     const challenge = await HocusChallenge.findOne(challengeFilter);
 
     const solveFilter = {challengeId: challenge._id};
-    const solves = await HocusChallenge.find(solveFilter);
+    const solves = await HocusSolve.find(solveFilter);
     const scores = [0,0,0,0,0,0];
-    console.log("filter "+solves.length+":"+solveFilter);
     solves.map( s => {
-      console.log("stars?"+s.stars);
       const i = s.stars;
       scores[i] = scores[i]+1;
     });
