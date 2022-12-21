@@ -235,12 +235,16 @@ app.get("/hocusyesterdayscores/", async (request, response) => {
 
     const solveFilter = {challengeId: challenge._id};
     const solves = await HocusChallenge.find(solveFilter);
+    const scores = [0,0,0,0,0,0];
+    solves.map( s => {
+      const i = s.stars;
+      scores[i] = scores[i]+1;
+    });
+
     data = {
-      scores: [0,1,2,3,4,5],
+      scores,
       clue: challenge.clue,
-      date,
-      id: challenge.id,
-      currentTime: new Date()
+      date
     }
 
     response.send(data);
