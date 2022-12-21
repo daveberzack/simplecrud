@@ -244,7 +244,8 @@ app.get("/hocusyesterdayscores/", async (request, response) => {
     data = {
       scores,
       clue: challenge.clue,
-      date
+      date,
+      id: challenge._id
     }
 
     response.send(data);
