@@ -237,8 +237,10 @@ app.get("/hocusyesterdayscores/", async (request, response) => {
     const solves = await HocusSolve.find(solveFilter);
     const scores = [0,0,0,0,0,0];
     solves.map( s => {
-      const i = s.stars;
-      scores[i] = scores[i]+1;
+      if (s.timePassed>3){
+        const i = s.stars;
+        scores[i] = scores[i]+1;
+      }
     });
 
     data = {
